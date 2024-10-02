@@ -20,7 +20,7 @@ pogr = np.zeros(m)
 
 plt.figure()
 for k in range(1, m + 1):
-    W = np.vander(XN, increasing=False)
+    W = np.vander(XN)
     A = np.linalg.solve(W, YN)
 
     P = np.polyval(A, x)
