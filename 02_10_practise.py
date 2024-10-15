@@ -1,15 +1,16 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from random import randint
 
 
 def main():
 
     a = -np.pi / 2
-    b = np.pi / 2
+    b = np.pi
     n = 1000
     x = np.linspace(a, b, n)
-    y = np.cos(x) 
-    m = 30
+    y = np.cos(x)
+    m = 15
     pogr = np.zeros(m)
 
     XN = np.array([x[0]])
@@ -25,18 +26,19 @@ def main():
         pogr[k - 1] = np.max(np.abs(P  - y))
 
         XN = np.linspace(a, b, k+1)
-        YN = np.cos(XN)
+        YN = np.cos(XN) + 
 
         plt.subplot(5, m // 5, k)
         plt.plot(x, np.abs(P - y))
         plt.title(f'k={k}')
-    
+
     plt.subplots_adjust(hspace=0.7)
 
     plt.figure('Погрешность')
     ax = plt.subplot()
     ax.set_xticks(np.arange(1, m + 1))
     ax.plot(np.arange(1, m + 1), np.log10(pogr), 'purple')
+    plt.title('a=-pi/2 b=pi')
     plt.xlabel('Количество точек')
     plt.ylabel('log10(погрешность)')
     plt.show()

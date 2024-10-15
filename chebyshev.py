@@ -4,12 +4,12 @@ import matplotlib.pyplot as plt
 
 def main():
 
-    a = -np.pi / 2
-    b = np.pi / 2
+    a = 0
+    b = np.pi 
     n = 1000
     h = (b - a) / (n - 1)
     x = np.arange(a, b + h, h)
-    y = np.sin(x)
+    y = np.cos(x)
     m = 10
 
     XPN = np.array([x[0]])
@@ -17,7 +17,7 @@ def main():
 
     dch = np.zeros(m)
     dp = np.zeros(m)
-    
+
     fig, ax = plt.subplots(10, 2)
     ax[0][0].set_title('x=x_0 + nh')
     ax[0][1].set_title('Chebyshev')
@@ -27,7 +27,7 @@ def main():
         # Chebyshev axe
         t = np.array([np.cos((2 * j - 1) * np.pi / (2 * k)) for j in range(1, k + 1)])
         XchN = (a + b) / 2 + (b - a) * t / 2
-        YchN = np.sin(XchN)
+        YchN = np.cos(XchN)
         Wch = np.vander(XchN)
         Ach = np.linalg.solve(Wch, YchN)
         Pch = np.polyval(Ach, x)
@@ -37,17 +37,17 @@ def main():
         A = np.linalg.solve(W, YPN)
         Pp = np.polyval(A, x)
         XPN = np.linspace(a, b, k+1)
-        YPN = np.sin(XPN)
+        YPN = np.cos(XPN)
 
         # HERE plot graph
         ax[k - 1][0].plot(x, np.abs(y - Pp))
         ax[k - 1][1].plot(x, np.abs(y - Pch))
-        
+
 
         # Count accuracy
         dch[k - 1] = np.max(np.abs(y - Pch))
         dp[k - 1] = np.max(np.abs(y - Pp))
-    
+
     fig.show()
     # Print other graph
     plt.figure()
