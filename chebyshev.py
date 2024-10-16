@@ -5,13 +5,13 @@ import matplotlib.pyplot as plt
 def main():
 
     a = 0
-    b = np.pi 
+    b = np.pi
     n = 1000
     h = (b - a) / (n - 1)
     x = np.arange(a, b + h, h)
     y = np.cos(x)
     m = 10
-
+        
     XPN = np.array([x[0]])
     YPN = np.array([y[0]])
 
